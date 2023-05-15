@@ -98,7 +98,6 @@ export default {
             const loader = new GLTFLoader().setPath('/model/');
             loader.load('people.glb', function (gltf) {
                 gltf.scene.children.splice(0,1)
-                that.gltfChildFour = gltf.scene.children[0]
                 that.plant = gltf.scene.children[1]
                 // 创建模型的线条几何体
                 let edgesGeometry = new THREE.EdgesGeometry(gltf.scene.children[0].geometry);
@@ -117,6 +116,7 @@ export default {
                 wrapper.scale.set(scale, scale, scale);
                 wrapper.rotateY(Math.PI);
                 wrapper.position.y = 0.1;
+                that.gltfChildFour = wrapper
 
                 // 将包裹对象添加到场景中
                 scene.add(wrapper);
@@ -176,7 +176,7 @@ export default {
             if (this.plant && this.plant.position) {
                 this.plant.rotateY(0.03)
             }
-            // scene.rotateY(0.03)//整个模型转动
+            this.gltfChildFour.rotateY(0.03)//整个模型转动
         },
     },
     mounted () {
